@@ -5,6 +5,19 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      // body: Column(
+      //   // crossAxisAlignment: CrossAxisAlignment.center,
+      //   // spacing: 40,
+      //   children: [
+      //     SizedBox(height: 20,),
+      //     Image.asset(
+      //       AppAssets.tinyLogo,
+      //       width: 159,
+      //     ),
+      //
+      //   ],
+      // ),
+    );
   }
 }
