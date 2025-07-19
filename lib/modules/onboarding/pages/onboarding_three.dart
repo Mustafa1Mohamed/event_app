@@ -47,6 +47,5 @@ class OnboardingThree extends StatelessWidget {
         ),
       ],
     );
-    ;
   }
 }

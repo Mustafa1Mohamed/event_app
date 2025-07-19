@@ -11,4 +11,7 @@ abstract class AppAssets {
   static const String leftArrow = 'assets/icons/left_arrow.png';
   static const String beingCreative = 'assets/images/being-creative.png';
   static const String socialCreativity = 'assets/images/social-creativity.png';
+  static const String mailIcon = 'assets/icons/mailIcon.png';
+  static const String lockIcon = 'assets/icons/passwordIcon.png';
+  static const String googleIcon = 'assets/icons/googleIcon.png';
 }
