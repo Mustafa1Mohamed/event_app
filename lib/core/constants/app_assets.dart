@@ -14,4 +14,6 @@ abstract class AppAssets {
   static const String mailIcon = 'assets/icons/mailIcon.png';
   static const String lockIcon = 'assets/icons/passwordIcon.png';
   static const String googleIcon = 'assets/icons/googleIcon.png';
+  static const String eyeIcon = 'assets/icons/EyeIcon.png';
+  static const String personIcon = 'assets/icons/person_icon.png';
 }

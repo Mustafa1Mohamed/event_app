@@ -1,5 +1,6 @@
 import 'package:event_app/core/routes/page_routes_name.dart';
-import 'package:event_app/modules/authentication/pages/login_view.dart';
+import 'package:event_app/modules/authentication/login_auth/pages/login_view.dart';
+import 'package:event_app/modules/authentication/register_auth/pages/register_view.dart';
 import 'package:event_app/modules/onboarding/pages/onboarding_page_view.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,11 @@ abstract class AppRoute {
       case PageRoutesName.onboardingPageView:
         return MaterialPageRoute(
           builder: (_) => const OnboardingPageView(),
+          settings: settings,
+        );
+      case PageRoutesName.register:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterView(),
           settings: settings,
         );
       default:

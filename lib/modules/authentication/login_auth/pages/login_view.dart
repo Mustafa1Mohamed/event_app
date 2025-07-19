@@ -1,7 +1,10 @@
+import 'package:event_app/modules/authentication/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/app_assets.dart';
-import '../../../core/theme/color_palette.dart';
+import '../../../../core/constants/app_assets.dart';
+import '../../../../core/routes/page_routes_name.dart';
+import '../../../../core/theme/color_palette.dart';
+import '../../widgets/custom_button.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -24,40 +27,12 @@ class _LoginViewState extends State<LoginView> {
             const SizedBox(height: 40),
             Center(child: Image.asset(AppAssets.logo, width: 159)),
             const SizedBox(height: 24),
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Image.asset(AppAssets.mailIcon, width: 24),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                hintText: 'Email',
-                labelStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            const CustomTextFormField(
+              hintText: 'Email', iconPath: AppAssets.mailIcon,),
             const SizedBox(height: 16),
-            TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Image.asset(AppAssets.lockIcon, width: 24),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                hintText: 'Password',
-                labelStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            const CustomTextFormField(hintText: 'Password',
+              isPassword: true,
+              iconPath: AppAssets.lockIcon,),
             const SizedBox(height: 16),
             Row(
               children: [
@@ -80,26 +55,7 @@ class _LoginViewState extends State<LoginView> {
               ],
             ),
             const SizedBox(height: 24),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                height: 56,
-                decoration: BoxDecoration(
-                  color: ColorPalette.primaryColor,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            CustomButton(text: 'Login',),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +68,9 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, PageRoutesName.register);
+                  },
                   child: Text(
                     'Create Account',
                     style: TextStyle(
