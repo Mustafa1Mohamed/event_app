@@ -1,10 +1,10 @@
-import 'package:event_app/modules/authentication/widgets/custom_text_form_field.dart';
+import 'package:event_app/core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/routes/page_routes_name.dart';
 import '../../../../core/theme/color_palette.dart';
-import '../../widgets/custom_button.dart';
+import '../../../../core/widgets/custom_button.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -27,12 +27,23 @@ class _LoginViewState extends State<LoginView> {
             const SizedBox(height: 40),
             Center(child: Image.asset(AppAssets.logo, width: 159)),
             const SizedBox(height: 24),
-            const CustomTextFormField(
-              hintText: 'Email', iconPath: AppAssets.mailIcon,),
+            CustomTextFormField(
+              hintText: 'Email',
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Image.asset(AppAssets.mailIcon, width: 24),
+              ),
+            ),
             const SizedBox(height: 16),
-            const CustomTextFormField(hintText: 'Password',
+            CustomTextFormField(
+              hintText: 'Password',
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Image.asset(AppAssets.lockIcon, width: 24),
+              ),
               isPassword: true,
-              iconPath: AppAssets.lockIcon,),
+
+            ),
             const SizedBox(height: 16),
             Row(
               children: [
@@ -55,17 +66,17 @@ class _LoginViewState extends State<LoginView> {
               ],
             ),
             const SizedBox(height: 24),
-            CustomButton(text: 'Login',),
+            CustomButton(text: 'Login', onTap: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  PageRoutesName.layout, (route) => false);
+            }),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   'Don\'t have an account? ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                 ),
                 InkWell(
                   onTap: () {
@@ -142,7 +153,9 @@ class _LoginViewState extends State<LoginView> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                      color: ColorPalette.primaryColor, width: 1),
+                    color: ColorPalette.primaryColor,
+                    width: 1,
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -154,15 +167,19 @@ class _LoginViewState extends State<LoginView> {
                         });
                       },
                       child: Container(
-                          width: 27,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: isPressed ? ColorPalette
-                                .primaryColor : Colors.transparent,
-                                width: isPressed ? 4 : 0),
+                        width: 27,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: isPressed
+                                ? ColorPalette.primaryColor
+                                : Colors.transparent,
+                            width: isPressed ? 4 : 0,
                           ),
-                          child: Image.asset(AppAssets.americaFlag, width: 26)),
+                        ),
+                        child: Image.asset(AppAssets.americaFlag, width: 26),
+                      ),
                     ),
                     const SizedBox(width: 8),
                     InkWell(
@@ -172,20 +189,24 @@ class _LoginViewState extends State<LoginView> {
                         });
                       },
                       child: Container(
-                          width: 27,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: isPressed ? Colors
-                                .transparent : ColorPalette.primaryColor,
-                                width: isPressed ? 0 : 4),
+                        width: 27,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: isPressed
+                                ? Colors.transparent
+                                : ColorPalette.primaryColor,
+                            width: isPressed ? 0 : 4,
                           ),
-                          child: Image.asset(AppAssets.EGIcon, width: 26)),
+                        ),
+                        child: Image.asset(AppAssets.EGIcon, width: 26),
+                      ),
                     ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

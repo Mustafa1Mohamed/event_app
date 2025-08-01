@@ -1,9 +1,9 @@
-import 'package:event_app/modules/authentication/widgets/custom_button.dart';
+import 'package:event_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/theme/color_palette.dart';
-import '../../widgets/custom_text_form_field.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -30,26 +30,36 @@ class _RegisterViewState extends State<RegisterView> {
             children: [
               Image.asset(AppAssets.logo, width: 159),
               const SizedBox(height: 24),
-              const CustomTextFormField(
+              CustomTextFormField(
+                prefixIcon: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Image.asset(AppAssets.personIcon, width: 24)),
                 hintText: 'Name',
-                iconPath: AppAssets.personIcon,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                prefixIcon: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Image.asset(AppAssets.mailIcon, width: 24)),
+
                 hintText: 'Email',
-                iconPath: AppAssets.mailIcon,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                prefixIcon: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Image.asset(AppAssets.lockIcon, width: 24)),
+
                 hintText: 'Password',
                 isPassword: true,
-                iconPath: AppAssets.lockIcon,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                prefixIcon: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Image.asset(AppAssets.lockIcon, width: 24)),
                 hintText: 'Re Password',
                 isPassword: true,
-                iconPath: AppAssets.lockIcon,
               ),
               const SizedBox(height: 16),
               CustomButton(text: 'Create Account'),

@@ -16,4 +16,14 @@ abstract class AppAssets {
   static const String googleIcon = 'assets/icons/googleIcon.png';
   static const String eyeIcon = 'assets/icons/EyeIcon.png';
   static const String personIcon = 'assets/icons/person_icon.png';
+  static const String ahomeIcon = 'assets/icons/ahome.png';
+  static const String homeIcon = 'assets/icons/home.png';
+  static const String favIcon = 'assets/icons/favIcon.png';
+  static const String afavIcon = 'assets/icons/afavIcon.png';
+  static const String profileIcon = 'assets/icons/profile.png';
+  static const String aprofileIcon = 'assets/icons/aprofile.png';
+  static const String mapIcon = 'assets/icons/map.png';
+  static const String aMapIcon = 'assets/icons/amap.png';
+  static const String bycicleIcon = 'assets/icons/bycicle.png';
+  static const String eventImage = 'assets/images/birthday.png';
 }
