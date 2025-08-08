@@ -6,6 +6,7 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import '../../core/constants/app_assets.dart';
 import '../../core/routes/page_routes_name.dart';
+import '../../l10n/app_localizations.dart';
 import 'favorites/pages/favourite_view.dart';
 import 'home/pages/home_view.dart';
 
@@ -22,6 +23,8 @@ class _LayoutViewState extends State<LayoutView> {
 
   @override
   Widget build(BuildContext context) {
+    var locale = AppLocalizations.of(context)!;
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Bounceable(
@@ -56,7 +59,7 @@ class _LayoutViewState extends State<LayoutView> {
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage(AppAssets.homeIcon)),
             activeIcon: ImageIcon(AssetImage(AppAssets.ahomeIcon)),
-            label: 'Home',
+            label: locale.home,
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage(AppAssets.mapIcon)),
@@ -64,17 +67,17 @@ class _LayoutViewState extends State<LayoutView> {
               AssetImage(AppAssets.aMapIcon),
               color: Colors.white,
             ),
-            label: 'maps',
+            label: locale.maps,
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage(AppAssets.favIcon)),
             activeIcon: ImageIcon(AssetImage(AppAssets.afavIcon)),
-            label: 'favourites',
+            label: locale.favorites,
           ),
           BottomNavigationBarItem(
             icon: ImageIcon(AssetImage(AppAssets.profileIcon)),
             activeIcon: ImageIcon(AssetImage(AppAssets.aprofileIcon)),
-            label: 'profile',
+            label: locale.profile,
           ),
         ],
       ),

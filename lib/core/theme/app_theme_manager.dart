@@ -5,9 +5,10 @@ import 'color_palette.dart';
 abstract class AppThemeManager {
   static ThemeData lightTheme = ThemeData(
     primaryColor: ColorPalette.primaryColor,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: ColorPalette.scaffoldDarkBackground,
+
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: ColorPalette.primaryColor,
+      backgroundColor: ColorPalette.scaffoldDarkBackground,
       type: BottomNavigationBarType.fixed,
     ),
   );

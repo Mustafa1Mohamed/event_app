@@ -192,6 +192,10 @@ class _EventCreationViewState extends State<EventCreationView> {
                     if (value == null || value.isEmpty) {
                       return 'Title is required';
                     }
+                    if (value.length < 5) {
+                      return 'Title must be at least 5 characters';
+                    }
+                    return null;
                   },
                   controller: titleController,
                   hintText: 'Event Title',
@@ -212,6 +216,10 @@ class _EventCreationViewState extends State<EventCreationView> {
                     if (value == null || value.isEmpty) {
                       return 'Description is required';
                     }
+                    if (value.length < 5) {
+                      return 'Description must be at least 5 characters';
+                    }
+                    return null;
                   },
                   controller: descriptionController,
                   maxLines: 5,
