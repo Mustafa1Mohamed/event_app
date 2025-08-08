@@ -1,11 +1,14 @@
 import 'package:event_app/core/theme/color_palette.dart';
+import 'package:event_app/core/utils/firebase_firestore_utils.dart';
+import 'package:event_app/models/event_data.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/app_assets.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:intl/intl.dart';
 
 class EventCardItem extends StatelessWidget {
-  const EventCardItem({super.key});
+  const EventCardItem({super.key, required this.eventData});
 
+  final EventData eventData;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -19,7 +22,7 @@ class EventCardItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: ColorPalette.primaryColor),
           image: DecorationImage(
-            image: AssetImage(AppAssets.eventImage),
+            image: AssetImage(eventData.eventCategoryImage),
             fit: BoxFit.cover,
           ),
         ),
@@ -36,7 +39,7 @@ class EventCardItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                '23 Nov',
+                DateFormat('dd MMM').format(eventData.selectedDate),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   height: 1.1,
@@ -58,7 +61,7 @@ class EventCardItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'Event Name',
+                      eventData.eventTitle,
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         color: Colors.black,
@@ -67,9 +70,18 @@ class EventCardItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Icon(
-                    Icons.favorite_border_outlined,
-                    color: ColorPalette.primaryColor,
+                  Bounceable(
+                    onTap: () {
+                      eventData.isFavourite = !eventData.isFavourite;
+                      FirebaseFirestoreUtils.updateEventTask(eventData);
+                      // eventData.notifyListeners();
+                    },
+                    child: Icon(
+                      eventData.isFavourite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: ColorPalette.primaryColor,
+                    ),
                   ),
                 ],
               ),

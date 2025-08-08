@@ -25,5 +25,16 @@ abstract class AppAssets {
   static const String mapIcon = 'assets/icons/map.png';
   static const String aMapIcon = 'assets/icons/amap.png';
   static const String bycicleIcon = 'assets/icons/bycicle.png';
-  static const String eventImage = 'assets/images/birthday.png';
+  static const String birthdayImage = 'assets/images/birthday.png';
+  static const String bookClubImage = 'assets/images/Book Club.png';
+  static const String eatingImage = 'assets/images/Eating.png';
+  static const String exhibitionImage = 'assets/images/exhibition.png';
+  static const String gamingImage = 'assets/images/gaming.png';
+  static const String holidayImage = 'assets/images/holiday.png';
+  static const String meetingImage = 'assets/images/meeting.png';
+  static const String sportImage = 'assets/images/sport.png';
+  static const String workshopImage = 'assets/images/workshop.png';
+  static const String eventTitle = 'assets/icons/eventTitle.png';
+  static const String sadFace = 'assets/images/sad.png';
+  static const String sadAvatar = 'assets/images/sadAvatar.jpeg';
 }

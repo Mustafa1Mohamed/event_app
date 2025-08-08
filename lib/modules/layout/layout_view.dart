@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 import '../../core/constants/app_assets.dart';
+import '../../core/routes/page_routes_name.dart';
 import 'favorites/pages/favourite_view.dart';
 import 'home/pages/home_view.dart';
 
@@ -24,7 +25,9 @@ class _LayoutViewState extends State<LayoutView> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Bounceable(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, PageRoutesName.eventCreation);
+        },
         child: CircleAvatar(
           backgroundColor: Colors.white,
           radius: 32,

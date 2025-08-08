@@ -1,9 +1,12 @@
 import 'package:event_app/models/category_data.dart';
+import 'package:event_app/models/event_data.dart';
 import 'package:event_app/modules/layout/home/widgets/tap_bar_item_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/routes/page_routes_name.dart';
 import '../../../../core/theme/color_palette.dart';
+import '../../../../core/utils/firebase_firestore_utils.dart';
 import '../widgets/event_card_item.dart';
 
 class HomeView extends StatefulWidget {
@@ -15,11 +18,54 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   List<CategoryData> categories = [
-    CategoryData(name: 'Sports', image: AppAssets.bycicleIcon),
-    CategoryData(name: 'Sports', image: AppAssets.bycicleIcon),
-    CategoryData(name: 'Sports', image: AppAssets.bycicleIcon),
-    CategoryData(name: 'Sports', image: AppAssets.bycicleIcon),
-    CategoryData(name: 'Sports', image: AppAssets.bycicleIcon),
+    CategoryData(
+      id: 'sports',
+      image: AppAssets.sportImage,
+      name: 'Sports',
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'bookClub',
+      image: AppAssets.bookClubImage,
+      name: 'BookClub',
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'birthday',
+      image: AppAssets.birthdayImage,
+      name: 'Birthday',
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'meeting',
+      image: AppAssets.meetingImage,
+      name: 'Meeting',
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'gaming',
+      image: AppAssets.gamingImage,
+      name: 'Gaming',
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'workshop',
+      name: 'WorkShop',
+      image: AppAssets.workshopImage,
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'exhibition',
+      name: 'Exhibtion',
+      image: AppAssets.exhibitionImage,
+      icImage: AppAssets.bycicleIcon,
+    ),
+    CategoryData(
+      id: 'eating',
+      name: 'Eating',
+      image: AppAssets.eatingImage,
+      icImage: AppAssets.bycicleIcon,
+    ),
   ];
   int selectedIndex = 0;
 
@@ -59,7 +105,7 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ),
                         Text(
-                          'John Safwat',
+                          'Mustafa Mohamed',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -135,7 +181,7 @@ class _HomeViewState extends State<HomeView> {
                   tabs: categories.map((e) {
                     return Tab(
                       child: TapBarItemWidget(
-                        image: e.image,
+                        image: e.icImage,
                         name: e.name,
                         isSelected: selectedIndex == categories.indexOf(e),
                       ),
@@ -146,15 +192,100 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
-        Expanded(
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return EventCardItem();
-            },
-            separatorBuilder: (context, index) => SizedBox(height: 10),
-            itemCount: 10,
+        StreamBuilder(
+          stream: FirebaseFirestoreUtils.getStreamEvents(
+            categoryId: categories[selectedIndex].id,
           ),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  style: TextStyle(color: Colors.red),
+                ),
+              );
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+            List<EventData> events = snapshot.data!.docs
+                .map((e) => e.data())
+                .toList();
+            return events.isEmpty
+                ? Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(child: Text('No Events', style: TextStyle(
+                    color: ColorPalette.primaryColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                  ),)),
+                  SizedBox(height: 20),
+                  Center(
+                    child: Ink.image(
+                      image: AssetImage(AppAssets.sadAvatar),
+                      fit: BoxFit.cover,
+                      width: 100,
+                      height: 200,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            PageRoutesName.eventCreation,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Center(child: Text(
+                    'Click the image to Create your first event',
+                    style: TextStyle(
+                      color: ColorPalette.primaryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),)),
+                ],
+              ),
+            )
+                : Expanded(
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return EventCardItem(eventData: events[index]);
+                },
+                separatorBuilder: (context, index) =>
+                    SizedBox(height: 10),
+                itemCount: events.length,
+              ),
+            );
+          },
         ),
+        // FutureBuilder<List<EventData>>(
+        //   future: FirebaseFirestoreUtils.getEvents(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasError) {
+        //       return Center(
+        //         child: Text(
+        //           snapshot.error.toString(),
+        //           style: TextStyle(color: Colors.red),
+        //         ),
+        //       );
+        //     }
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return Center(child: CircularProgressIndicator());
+        //     }
+        //     return Expanded(
+        //       child: ListView.separated(
+        //         itemBuilder: (context, index) {
+        //           return EventCardItem(eventData: snapshot.data![index]);
+        //         },
+        //         separatorBuilder: (context, index) => SizedBox(height: 10),
+        //         itemCount: snapshot.data!.length,
+        //       ),
+        //     );
+        //   },
+        // ),
       ],
     );
   }

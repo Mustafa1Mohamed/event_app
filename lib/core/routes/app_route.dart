@@ -4,6 +4,7 @@ import 'package:event_app/modules/authentication/register_auth/pages/register_vi
 import 'package:event_app/modules/onboarding/pages/onboarding_page_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../modules/event_creation/pages/event_creation_view.dart';
 import '../../modules/layout/layout_view.dart';
 import '../../modules/onboarding/pages/onboarding_login_view.dart';
 import '../../modules/onboarding/pages/onboarding_one.dart';
@@ -45,6 +46,11 @@ abstract class AppRoute {
       case PageRoutesName.layout:
         return MaterialPageRoute(
           builder: (_) => const LayoutView(),
+          settings: settings,
+        );
+      case PageRoutesName.eventCreation:
+        return MaterialPageRoute(
+          builder: (_) => const EventCreationView(),
           settings: settings,
         );
       default:

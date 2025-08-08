@@ -13,6 +13,8 @@ class CustomTextFormField extends StatefulWidget {
     this.prefixIcon,
     this.onChanged,
     this.onFieldSubmitted,
+    this.maxLines = 1,
+    this.validator
   });
 
   final void Function(String)? onChanged;
@@ -20,7 +22,8 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? prefixIcon;
   final String? hintText;
   final bool isPassword;
-
+  final int maxLines;
+  final String? Function(String?)? validator;
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -31,12 +34,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
       onFieldSubmitted: widget.onFieldSubmitted,
       onChanged: widget.onChanged,
       controller: widget.controller,
       cursorColor: ColorPalette.primaryColor,
       obscureText: widget.isPassword ? obscureText : false,
-
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
         suffixIcon: widget.isPassword
             ? GestureDetector(

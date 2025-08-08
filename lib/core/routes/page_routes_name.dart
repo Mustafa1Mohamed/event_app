@@ -6,4 +6,5 @@ abstract class PageRoutesName {
   static const String onboardingPageView = '/onboarding_page_view';
   static const String register = '/register_view';
   static const String layout = '/layout_view';
+  static const String eventCreation = '/event_creation_view';
 }
